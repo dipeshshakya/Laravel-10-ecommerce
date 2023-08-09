@@ -18,6 +18,7 @@ License: For each use you must have a valid license purchased only from above li
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
 	<title>Admin Panel - Real Estate</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

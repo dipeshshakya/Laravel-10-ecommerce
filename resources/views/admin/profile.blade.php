@@ -9,7 +9,7 @@
         <div class="card rounded">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-2">
-            <img class="wd-70 rounded-circle" src="{{(!empty($data->photo))? url('upload/admin/images/'.$data->photo) : 'https://via.placeholder.com/100x100' }}" alt="profile">
+            <img class="wd-80  rounded-circle" src="{{(!empty($data->photo))? url('upload/admin/image/'.$data->photo) : 'https://via.placeholder.com/100x100' }}" alt="profile">
               <h6 class="card-title mb-0">About</h6>
               <div class="dropdown">
                 <a type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -24,20 +24,20 @@
             </div>
             <p>Hi! I'm Amiah the Senior UI Designer at NobleUI. We hope you enjoy the design and quality of Social.</p>
             <div class="mt-3">
-              <label class="tx-11 fw-bolder mb-0 text-uppercase">Joined:</label>
-              <p class="text-muted">November 15, 2015</p>
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Name:</label>
+              <p class="text-muted">{{$data->username}}</p>
             </div>
             <div class="mt-3">
               <label class="tx-11 fw-bolder mb-0 text-uppercase">Lives:</label>
-              <p class="text-muted">New York, USA</p>
+              <p class="text-muted">{{$data->address}}</p>
             </div>
             <div class="mt-3">
               <label class="tx-11 fw-bolder mb-0 text-uppercase">Email:</label>
-              <p class="text-muted">me@nobleui.com</p>
+              <p class="text-muted">{{$data->email}}</p>
             </div>
             <div class="mt-3">
-              <label class="tx-11 fw-bolder mb-0 text-uppercase">Website:</label>
-              <p class="text-muted">www.nobleui.com</p>
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Phone:</label>
+              <p class="text-muted">{{$data->phone}}</p>
             </div>
             <div class="mt-3 d-flex social-links">
               <a href="javascript:;" class="btn btn-icon border btn-xs me-2">
@@ -61,30 +61,43 @@
             <div class="card">
                 <div class="card-body">
   
-                    <h6 class="card-title">Basic Form</h6>
+                    <h6 class="card-title">Edit Profile</h6>
   
-                                  <form class="forms-sample">
-                                      <div class="mb-3">
-                                          <label for="exampleInputUsername1" class="form-label">Username</label>
-                                          <input type="text" class="form-control" id="exampleInputUsername1" autocomplete="off" placeholder="Username">
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                                      </div>
-                                      <div class="mb-3">
-                                          <label for="exampleInputPassword1" class="form-label">Password</label>
-                                          <input type="password" class="form-control" id="exampleInputPassword1" autocomplete="off" placeholder="Password">
-                                      </div>
-                                      <div class="form-check mb-3">
-                      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                          <label class="form-check-label" for="exampleCheck1">
-                                              Remember me
-                                          </label>
-                                      </div>
-                                      <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                      <button class="btn btn-secondary">Cancel</button>
-                                  </form>
+                        <form class="forms-sample" method="POST" action="{{route('admin.profile.store')}}" enctype="multipart/form-data">
+                          @csrf
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" autocomplete="off" value="{{ $data->username }}" name="username">
+                            </div>
+                            <div class="mb-3">
+                              <label for="name" class="form-label">Name</label>
+                              <input type="text" class="form-control" autocomplete="off" value="{{ $data->name }}" name="name">
+                          </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control"  value="{{ $data->email }}" name="email" >
+                            </div>
+
+                            <div class="mb-3">
+                              <label for="phone" class="form-label">Phone</label>
+                              <input type="text" class="form-control" name="phone" autocomplete="off" value= "{{ $data->phone }}">
+                          </div>
+
+                          <div class="mb-3">
+                            <label for="address" class="form-label">Address</label>
+                            <input type="text" class="form-control" name="address" autocomplete="off" value="{{ $data->address }}">
+                        </div>
+                            
+                          <div class="mb-3">
+
+                            <input type="file" class="form-control mb-3" name="photo" autocomplete="off"  id="image">
+                            <img class="wd-80 rounded-circle" id="showImage" src="{{(!empty($data->photo))? url('upload/admin/image/'.$data->photo) : 'https://via.placeholder.com/100x100' }}" alt="profile">
+                            
+                        </div>
+                            
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button class="btn btn-secondary">Cancel</button>
+                        </form>
   
                 </div>
               </div>
@@ -95,5 +108,21 @@
     </div>
 
         </div>
+
+
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $('#image').change(function(e){
+              var reader = new FileReader();
+              reader.onload = function(e){
+                $('#showImage').attr('src',e.target.result);
+
+              }
+              reader.readAsDataURL(e.target.files['0']);
+            })
+
+          })
+        
+        </script>
 
 @endsection
