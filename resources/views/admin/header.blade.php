@@ -203,8 +203,8 @@
 										<img class="wd-80 ht-80 rounded-circle" src="{{(!empty($data->photo))? url('upload/admin/image/'.$data->photo) : 'https://via.placeholder.com/100x100' }}" alt="">
 									</div>
 									<div class="text-center">
-										<p class="tx-16 fw-bolder">{{$data->username}}</p>
-										<p class="tx-12 text-muted">{{$data->email}}</p>
+										<p class="tx-16 fw-bolder">{{(!empty($data->username))? $data->username : " " }}</p>
+										<p class="tx-12 text-muted">{{(!empty($data->email))? $data->email : " " }}</p>
 									</div>
 								</div>
                 <ul class="list-unstyled p-1">

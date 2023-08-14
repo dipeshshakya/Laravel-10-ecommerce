@@ -12,7 +12,9 @@ class AdminController extends Controller
 {
     //
     public function AdminDashboard(){
-        return view('admin.index');
+        $id = Auth::user()->id;
+        $data = User::find($id);
+        return view('admin.index',compact('data'));
     }
 
 

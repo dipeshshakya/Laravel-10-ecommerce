@@ -44,7 +44,9 @@ Route::post('/admin/profile/store', [AdminController::class, 'AdminProfileStore'
 Route::get('/admin/profile/reset-password', [AdminController::class, 'AdminChangePassword'])->name('admin.changePassword');
 Route::post('/admin/profile/update-password', [AdminController::class, 'AdminUpdatePassword'])->name('admin.update.password');
 
-
+// propertyType route
+Route::get('/all/type',[PropertyTypeController::class,'AllType'])->name('all.type');
+Route::get('/add/type',[PropertyTypeController::class,'AddType'])->name('add.type');
 
 });
 // agent routes
